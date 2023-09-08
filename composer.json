@@ -1,5 +1,5 @@
 {
-	"name": "dg/mysql-dump",
+	"name": "climba-commerce/mysql-dump",
 	"description": "MySQL database dump.",
 	"keywords": ["mysql"],
 	"homepage": "https://github.com/dg/MySQL-dump",
