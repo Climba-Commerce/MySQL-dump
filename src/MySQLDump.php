@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace MySQLDump\Src;
+namespace MySQLDump;
 
 use Exception;
-use MySQLDump\Src\mask\IMaskValue;
+use MySQLDump\mask\IMaskValue;
 use mysqli;
 
 /**

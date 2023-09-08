@@ -2,7 +2,7 @@
 
 namespace unit\src\mask;
 
-use MySQLDump\Src\mask\MaskValueAutoIncrementNumber;
+use MySQLDump\mask\MaskValueAutoIncrementNumber;
 use PHPUnit\Framework\TestCase;
 
 class MaskValueAutoIncrementNumberUnitTest extends TestCase

@@ -16,7 +16,7 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"MySQLDump\\Src\\": "src/"
+			"MySQLDump\\": "src/"
 		}
 	},
 	"require-dev": {

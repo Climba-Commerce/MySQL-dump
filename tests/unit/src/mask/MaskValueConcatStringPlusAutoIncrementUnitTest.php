@@ -2,7 +2,7 @@
 
 namespace unit\src\mask;
 
-use MySQLDump\Src\mask\MaskValueConcatStringPlusAutoIncrement;
+use MySQLDump\mask\MaskValueConcatStringPlusAutoIncrement;
 use PHPUnit\Framework\TestCase;
 
 class MaskValueConcatStringPlusAutoIncrementUnitTest extends TestCase

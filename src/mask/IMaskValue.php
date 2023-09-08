@@ -1,6 +1,6 @@
 <?php
 
-namespace MySQLDump\Src\mask;
+namespace MySQLDump\mask;
 
 interface IMaskValue
 {
