@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace MySQLDump;
 
 use Exception;
-use MySQLDump\mask\IMaskValue;
+use MySQLDump\Mask\IMaskValue;
 use mysqli;
 
 /**
@@ -34,7 +34,7 @@ class MySQLDump
 	/** @var mysqli */
 	private $connection;
     /** @var array */
-    private $maskData = [];
+    private $maskList = [];
 
 
 	/**
@@ -223,7 +223,7 @@ class MySQLDump
 
     public function addMask(string $table, string $column, IMaskValue $mask, $concatValue = null): void
     {
-        $this->maskData[$table][$column] = $mask;
+        $this->maskList[$table][$column] = $mask;
     }
 
     protected function maskData(string $table, string $column, $value)
@@ -234,14 +234,14 @@ class MySQLDump
 
     protected function getMask(string $table, string $column): ?IMaskValue
     {
-        foreach ($this->maskData as $tableMask => $value) {
-            foreach ($this->maskData[$tableMask] as $columnMask => $mask) {
+        foreach ($this->maskList as $tableMask => $value) {
+            foreach ($this->maskList[$tableMask] as $columnMask => $mask) {
                 $tableToMask = $this->removeCrasisFromString($tableMask);
                 $columnToMask = $this->removeCrasisFromString($columnMask);
                 $tableIn = $this->removeCrasisFromString($table);
                 $columnIn = $this->removeCrasisFromString($column);
                 if ($tableToMask === $tableIn && $columnToMask === $columnIn) {
-                    return $this->maskData[$tableToMask][$columnToMask];
+                    return $this->maskList[$tableToMask][$columnToMask];
                 }
             }
         }

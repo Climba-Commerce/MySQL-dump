@@ -2,7 +2,7 @@
 
 namespace unit\src\mask;
 
-use MySQLDump\mask\MaskValueFixValue;
+use MySQLDump\Mask\MaskValueFixValue;
 use PHPUnit\Framework\TestCase;
 
 class MaskValueFixValueUnitTest extends TestCase

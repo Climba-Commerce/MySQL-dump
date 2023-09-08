@@ -2,9 +2,9 @@
 
 namespace unit\src;
 
-use MySQLDump\mask\MaskValueAutoIncrementNumber;
-use MySQLDump\mask\MaskValueConcatStringPlusAutoIncrement;
-use MySQLDump\mask\MaskValueFixValue;
+use MySQLDump\Mask\MaskValueAutoIncrementNumber;
+use MySQLDump\Mask\MaskValueConcatStringPlusAutoIncrement;
+use MySQLDump\Mask\MaskValueFixValue;
 use Mockery;
 use MySQLDump\MySQLDump;
 use PHPUnit\Framework\TestCase;
