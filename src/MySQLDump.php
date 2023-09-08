@@ -226,7 +226,7 @@ class MySQLDump
         $this->maskData[$table][$column] = $mask;
     }
 
-    protected function maskData(string $table, string $column, ?string $value)
+    protected function maskData(string $table, string $column, $value)
     {
         $mask = $this->getMask($table, $column);
         return $mask ? $mask->maskValue() : $value;
