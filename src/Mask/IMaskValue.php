@@ -4,5 +4,5 @@ namespace MySQLDump\Mask;
 
 interface IMaskValue
 {
-    public function maskValue();
+    public function maskValue($value = null);
 }

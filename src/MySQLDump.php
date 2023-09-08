@@ -229,7 +229,7 @@ class MySQLDump
     protected function maskData(string $table, string $column, $value)
     {
         $mask = $this->getMask($table, $column);
-        return $mask ? $mask->maskValue() : $value;
+        return $mask ? $mask->maskValue($value) : $value;
     }
 
     protected function getMask(string $table, string $column): ?IMaskValue
