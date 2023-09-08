@@ -1,5 +1,7 @@
 <?php
 
+namespace Src\mask;
+
 class MaskValueFixValue implements IMaskValue
 {
     /**

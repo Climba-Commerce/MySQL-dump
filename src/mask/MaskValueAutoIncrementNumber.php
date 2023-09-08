@@ -1,5 +1,7 @@
 <?php
 
+namespace Src\mask;
+
 class MaskValueAutoIncrementNumber implements IMaskValue
 {
     /** @var $autoIncrement */

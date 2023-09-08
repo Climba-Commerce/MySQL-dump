@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+namespace Src;
+
 /**
  * MySQL database dump loader.
  *

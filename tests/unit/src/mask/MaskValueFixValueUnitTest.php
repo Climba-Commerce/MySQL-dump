@@ -2,7 +2,7 @@
 
 namespace unit\src\mask;
 
-use MaskValueFixValue;
+use Src\mask\MaskValueFixValue;
 use PHPUnit\Framework\TestCase;
 
 class MaskValueFixValueUnitTest extends TestCase

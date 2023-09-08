@@ -1,5 +1,7 @@
 <?php
 
+namespace Src\mask;
+
 class MaskValueConcatStringPlusAutoIncrement implements IMaskValue
 {
     /** @var int */

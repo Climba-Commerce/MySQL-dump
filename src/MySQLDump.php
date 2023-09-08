@@ -2,6 +2,12 @@
 
 declare(strict_types=1);
 
+namespace Src;
+
+use Exception;
+use mysqli;
+use Src\mask\IMaskValue;
+
 /**
  * MySQL database dump.
  *
