@@ -4,12 +4,21 @@ namespace Src\mask;
 
 class MaskValueFixValue implements IMaskValue
 {
+    protected $value;
+
     /**
-     * @param string|int|float|null $concatValue
+     * @param string|int|float|null $value
+     */
+    public function __construct($value)
+    {
+        $this->value = $value;
+    }
+
+    /**
      * @return string|int|float|null
      */
-    public function maskValue($concatValue = null)
+    public function maskValue()
     {
-        return $concatValue;
+        return $this->value;
     }
 }

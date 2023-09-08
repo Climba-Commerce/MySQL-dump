@@ -33,7 +33,7 @@ class MySQLDumpUnitTest extends TestCase
         $mock = Mockery::mock(MySQLDump::class)->makePartial();
         $mock->shouldAllowMockingProtectedMethods();
 
-        $mock->addMask('table', 'column', new MaskValueFixValue(), 'fixValue');
+        $mock->addMask('table', 'column', new MaskValueFixValue('fixValue'));
         $mask = $mock->maskData('table', 'column', 'value');
 
         $this->assertEquals('fixValue', $mask);
@@ -55,7 +55,7 @@ class MySQLDumpUnitTest extends TestCase
         $mock = Mockery::mock(MySQLDump::class)->makePartial();
         $mock->shouldAllowMockingProtectedMethods();
 
-        $mock->addMask('table', 'column', new MaskValueConcatStringPlusAutoIncrement(), 'fixValue');
+        $mock->addMask('table', 'column', new MaskValueConcatStringPlusAutoIncrement('fixValue'));
         $mask = $mock->maskData('table', 'column', 'value');
 
         $this->assertEquals('fixValue - 1', $mask);
@@ -66,7 +66,7 @@ class MySQLDumpUnitTest extends TestCase
         $mock = Mockery::mock(MySQLDump::class)->makePartial();
         $mock->shouldAllowMockingProtectedMethods();
 
-        $mock->addMask('table', 'column', new MaskValueConcatStringPlusAutoIncrement(), 'fixValue');
+        $mock->addMask('table', 'column', new MaskValueConcatStringPlusAutoIncrement('fixValue'));
         $mask = $mock->maskData('table1', 'column1', 'value');
 
         $this->assertEquals('value', $mask);

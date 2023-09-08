@@ -9,10 +9,10 @@ class MaskValueConcatStringPlusAutoIncrementUnitTest extends TestCase
 {
     public function testMaskValue()
     {
-        $mask = new MaskValueConcatStringPlusAutoIncrement();
+        $mask = new MaskValueConcatStringPlusAutoIncrement('test');
 
         for ($index = 1; $index <= 10; $index++) {
-            $this->assertEquals('test - ' . $index, $mask->maskValue('test'));
+            $this->assertEquals('test - ' . $index, $mask->maskValue());
         }
     }
 }

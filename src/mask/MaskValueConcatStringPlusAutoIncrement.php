@@ -4,16 +4,20 @@ namespace Src\mask;
 
 class MaskValueConcatStringPlusAutoIncrement implements IMaskValue
 {
-    /** @var int */
     protected $autoIncrementNumber = 0;
+    protected $value;
+
+    public function __construct(string $value)
+    {
+        $this->value = $value;
+    }
 
     /**
-     * @param string $concatValue
      * @return string
      */
-    public function maskValue($concatValue = null): string
+    public function maskValue(): string
     {
         $this->autoIncrementNumber++;
-        return $concatValue . ' - ' . $this->autoIncrementNumber;
+        return $this->value . ' - ' . $this->autoIncrementNumber;
     }
 }

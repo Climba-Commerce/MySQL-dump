@@ -4,5 +4,5 @@ namespace Src\mask;
 
 interface IMaskValue
 {
-    public function maskValue($concatValue = null);
+    public function maskValue();
 }
