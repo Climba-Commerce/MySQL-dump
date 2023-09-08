@@ -27,6 +27,8 @@ class MySQLDump
 
 	/** @var mysqli */
 	private $connection;
+    /** @var array */
+    private $maskData = [];
 
 
 	/**
@@ -155,9 +157,10 @@ class MySQLDump
 			$size = 0;
 			$res = $this->connection->query("SELECT * FROM $delTable", MYSQLI_USE_RESULT);
 			while ($row = $res->fetch_assoc()) {
-				$s = '(';
-				foreach ($row as $key => $value) {
-					if ($value === null) {
+                $s = '(';
+                foreach ($row as $key => $value) {
+                    $value = $this->maskData($delTable, $row['Field'], $value);
+                    if ($value === null) {
 						$s .= "NULL,\t";
 					} elseif ($numeric[$key]) {
 						$s .= $value . ",\t";
@@ -211,4 +214,37 @@ class MySQLDump
 	{
 		return '`' . str_replace('`', '``', $s) . '`';
 	}
+
+    public function addMask(string $table, string $column, IMaskValue $mask, $concatValue = null): void
+    {
+        $this->maskData[$table][$column]['mask'] = $mask;
+        $this->maskData[$table][$column]['concatValue'] = $concatValue;
+    }
+
+    protected function maskData(string $table, string $column, string $value)
+    {
+        $mask = $this->getMask($table, $column);
+        return $mask ? $mask['mask']->maskValue($mask['concatValue']) : $value;
+    }
+
+    protected function getMask(string $table, string $column): ?array
+    {
+        foreach ($this->maskData as $tableMask => $value) {
+            foreach ($this->maskData[$tableMask] as $columnMask => $mask) {
+                $tableToMask = $this->removeCrasisFromString($tableMask);
+                $columnToMask = $this->removeCrasisFromString($columnMask);
+                $tableIn = $this->removeCrasisFromString($table);
+                $columnIn = $this->removeCrasisFromString($column);
+                if ($tableToMask === $tableIn && $columnToMask === $columnIn) {
+                    return $this->maskData[$tableToMask][$columnToMask];
+                }
+            }
+        }
+        return null;
+    }
+
+    protected function removeCrasisFromString(string $string): string
+    {
+        return str_replace('`', '', $string);
+    }
 }
