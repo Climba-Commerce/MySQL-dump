@@ -1,6 +1,6 @@
 <?php
 
-namespace Src\mask;
+namespace MySQLDump\Src\mask;
 
 class MaskValueFixValue implements IMaskValue
 {

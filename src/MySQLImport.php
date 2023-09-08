@@ -2,7 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Src;
+namespace MySQLDump\Src;
+
+use Exception;
+use mysqli;
 
 /**
  * MySQL database dump loader.
