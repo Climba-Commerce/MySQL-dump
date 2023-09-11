@@ -1,6 +1,6 @@
 <?php
 
-namespace unit\src\mask;
+namespace unit\src\Mask;
 
 use MySQLDump\Mask\MaskValueFixValue;
 use PHPUnit\Framework\TestCase;
