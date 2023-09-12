@@ -6,6 +6,13 @@ The dump typically contains SQL statements to create the table, populate it, or 
 
 It requires PHP 5.6 (release 1.5) or PHP 7.1 or later.
 
+Install
+-------
+
+```
+composer require climba-commerce/mysql-dump
+```
+
 Usage
 -----
 
