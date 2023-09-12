@@ -15,7 +15,7 @@ class MaskValueDependsAnotherColumnValue implements IMaskValue
         $this->mask = $mask;
     }
 
-    public function maskValue($value = null, $row = null)
+    public function maskValue($value = null, array $row = [])
     {
         if (isset($row[$this->dependsColumn]) && $row[$this->dependsColumn] == $this->dependsValue) {
             return $this->mask->maskValue($value, $row);
