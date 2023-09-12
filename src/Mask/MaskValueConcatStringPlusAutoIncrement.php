@@ -12,7 +12,7 @@ class MaskValueConcatStringPlusAutoIncrement implements IMaskValue
         $this->stringConcat = $value;
     }
 
-    public function maskValue($value = null): string
+    public function maskValue($value = null, $row = null): string
     {
         $this->autoIncrementNumber++;
         return $this->stringConcat . ' - ' . $this->autoIncrementNumber;

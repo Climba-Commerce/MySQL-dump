@@ -4,6 +4,7 @@ namespace unit\src;
 
 use MySQLDump\Mask\MaskValueAutoIncrementNumber;
 use MySQLDump\Mask\MaskValueConcatStringPlusAutoIncrement;
+use MySQLDump\Mask\MaskValueDependsAnotherColumnValue;
 use MySQLDump\Mask\MaskValueFixValue;
 use Mockery;
 use MySQLDump\MySQLDump;
@@ -70,5 +71,68 @@ class MySQLDumpUnitTest extends TestCase
         $mask = $mock->maskData('table1', 'column1', 'value');
 
         $this->assertEquals('value', $mask);
+    }
+
+    public function testMaskDataWithValueDependsAnotherColumnValue()
+    {
+        $mock = Mockery::mock(MySQLDump::class)->makePartial();
+        $mock->shouldAllowMockingProtectedMethods();
+
+        $maskDepends = new MaskValueDependsAnotherColumnValue(
+            'nm_config',
+            'usa_abc',
+            new MaskValueFixValue('fixMaskValue')
+        );
+
+        $mock->addMask('configs', 'vl_config', $maskDepends);
+        $row = [
+            'nm_config' => 'usa_abc',
+            'vl_config' => 'sim'
+        ];
+        $mask = $mock->maskData('configs', 'vl_config', 'nao', $row);
+
+        $this->assertEquals('fixMaskValue', $mask);
+    }
+
+    public function testMaskDataWithValueDependsAnotherColumnValueFatherColumnValueNotMatch()
+    {
+        $mock = Mockery::mock(MySQLDump::class)->makePartial();
+        $mock->shouldAllowMockingProtectedMethods();
+
+        $maskDepends = new MaskValueDependsAnotherColumnValue(
+            'nm_config',
+            'usa_abc',
+            new MaskValueFixValue('fixMaskValue')
+        );
+
+        $mock->addMask('configs', 'vl_config', $maskDepends);
+        $row = [
+            'nm_config' => 'usa_abcd',
+            'vl_config' => 'sim'
+        ];
+        $mask = $mock->maskData('configs', 'vl_config', 'nao', $row);
+
+        $this->assertEquals('nao', $mask);
+    }
+
+    public function testMaskDataWithValueDependsAnotherColumnValueFatherColumnNameNotMatch()
+    {
+        $mock = Mockery::mock(MySQLDump::class)->makePartial();
+        $mock->shouldAllowMockingProtectedMethods();
+
+        $maskDepends = new MaskValueDependsAnotherColumnValue(
+            'nm_config',
+            'usa_abc',
+            new MaskValueFixValue('fixMaskValue')
+        );
+
+        $mock->addMask('configs', 'vl_config', $maskDepends);
+        $row = [
+            'nm_configs' => 'usa_abc',
+            'vl_config' => 'sim'
+        ];
+        $mask = $mock->maskData('configs', 'vl_config', 'nao', $row);
+
+        $this->assertEquals('nao', $mask);
     }
 }

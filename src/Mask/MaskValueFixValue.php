@@ -17,7 +17,7 @@ class MaskValueFixValue implements IMaskValue
     /**
      * @return string|int|float|null
      */
-    public function maskValue($value = null)
+    public function maskValue($value = null, $row = null)
     {
         return $this->value;
     }

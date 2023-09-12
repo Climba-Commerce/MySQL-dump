@@ -165,7 +165,7 @@ class MySQLDump
             while ($row = $res->fetch_assoc()) {
                 $s = '(';
                 foreach ($row as $key => $value) {
-                    $value = $this->maskData($delTable, $key, $value);
+                    $value = $this->maskData($delTable, $key, $value, $row);
                     if ($value === null) {
                         $s .= "NULL,\t";
                     } elseif ($numeric[$key]) {
@@ -231,10 +231,10 @@ class MySQLDump
         $this->maskList[$tableToMask][$columnToMask] = $mask;
     }
 
-    protected function maskData(string $table, string $column, $value)
+    protected function maskData(string $table, string $column, $value, $row = null)
     {
         $mask = $this->getMask($table, $column);
-        return $mask ? $mask->maskValue($value) : $value;
+        return $mask ? $mask->maskValue($value, $row) : $value;
     }
 
     protected function getMask(string $table, string $column): ?IMaskValue
