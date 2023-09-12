@@ -59,7 +59,7 @@ class MySQLDumpUnitTest extends TestCase
         $mock->addMask('table', 'column', new MaskValueConcatStringPlusAutoIncrement('fixValue'));
         $mask = $mock->maskData('table', 'column', 'value');
 
-        $this->assertEquals('fixValue - 1', $mask);
+        $this->assertEquals('fixValue1', $mask);
     }
 
     public function testMaskDataWithDataToMaskWithTableDontExistsInMaskDataArray()
