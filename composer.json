@@ -1,5 +1,5 @@
 {
-	"name": "dg/mysql-dump",
+	"name": "climba-commerce/mysql-dump",
 	"description": "MySQL database dump.",
 	"keywords": ["mysql"],
 	"homepage": "https://github.com/dg/MySQL-dump",
@@ -14,6 +14,16 @@
 		"php": ">=7.1"
 	},
 	"autoload": {
-		"classmap": ["src/"]
+		"psr-4": {
+			"MySQLDump\\": "src/"
+		}
+	},
+	"require-dev": {
+		"phpunit/phpunit": "*",
+		"mockery/mockery": "*"
+
+	},
+	"scripts": {
+		"test": "./vendor/bin/phpunit tests"
 	}
 }

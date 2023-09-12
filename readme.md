@@ -36,4 +36,14 @@ $import = new MySQLImport($db);
 $import->load('dump.sql.gz');
 ```
 
+To run tests, execute:
+```
+composer run test
+```
+
+Now you can mask data on tables, use this way with IMaskInterface:
+```php
+$dump->addMask('users', 'email', IMaskInterface);
+```
+
 If you like it, **[please make a donation now](https://nette.org/make-donation?to=mysql-dump)**. Thank you!
