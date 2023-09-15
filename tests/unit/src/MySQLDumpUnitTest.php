@@ -78,11 +78,8 @@ class MySQLDumpUnitTest extends TestCase
         $mock = Mockery::mock(MySQLDump::class)->makePartial();
         $mock->shouldAllowMockingProtectedMethods();
 
-        $maskDepends = new MaskValueDependsAnotherColumnValue(
-            'nm_config',
-            'usa_abc',
-            new MaskValueFixValue('fixMaskValue')
-        );
+        $maskDepends = new MaskValueDependsAnotherColumnValue();
+        $maskDepends->addMaskData('nm_config', 'usa_abc', new MaskValueFixValue('fixMaskValue'));
 
         $mock->addMask('configs', 'vl_config', $maskDepends);
         $row = [
