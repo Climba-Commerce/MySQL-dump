@@ -5,16 +5,18 @@ namespace MySQLDump\Mask;
 class MaskValueConcatStringPlusAutoIncrement implements IMaskValue
 {
     protected $autoIncrementNumber = 0;
-    protected $stringConcat;
+    protected $beforeStringConcat;
+    protected $afterStringConcat;
 
-    public function __construct(string $value)
+    public function __construct(string $beforeStringConcat, string $afterStringConcat = '')
     {
-        $this->stringConcat = $value;
+        $this->beforeStringConcat = $beforeStringConcat;
+        $this->afterStringConcat = $afterStringConcat;
     }
 
     public function maskValue($value = null, array $row = []): string
     {
         $this->autoIncrementNumber++;
-        return $this->stringConcat . ' - ' . $this->autoIncrementNumber;
+        return $this->beforeStringConcat . $this->autoIncrementNumber . $this->afterStringConcat;
     }
 }

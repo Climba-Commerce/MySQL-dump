@@ -10,7 +10,8 @@ class MaskValueDependsAnotherColumnValueUnitTest extends TestCase
 {
     public function testMaskValue()
     {
-        $mask = new MaskValueDependsAnotherColumnValue('column', 'value', new MaskValueFixValue('fixValue'));
+        $mask = new MaskValueDependsAnotherColumnValue();
+        $mask->addMaskData('column', 'value', new MaskValueFixValue('fixValue'));
 
         $this->assertEquals('fixValue', $mask->maskValue('value', ['column' => 'value']));
         $this->assertEquals('value', $mask->maskValue('value', ['column' => 'otherValue']));
