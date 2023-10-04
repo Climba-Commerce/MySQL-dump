@@ -70,6 +70,9 @@ class MySQLImport
 
         while (!feof($handle)) {
             $s = fgets($handle);
+            if ($s === false) {
+                $s = "";
+            }
             $size += strlen($s);
             if (strtoupper(substr($s, 0, 10)) === 'DELIMITER ') {
                 $delimiter = trim(substr($s, 10));
